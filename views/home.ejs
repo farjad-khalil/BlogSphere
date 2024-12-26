@@ -1,0 +1,32 @@
+<%- include("partials/header"); -%>
+  <h1>Home</h1>
+  <p>
+    <%= startingContent %>
+  </p>
+
+
+  <% posts.forEach(function(post){ %>
+
+    <h1>
+      <%=post.title%>
+    </h1>
+    <p>
+      <% if (post.content && typeof post.content==='string' ) { %>
+        <% if(post.content.length>100){%>
+          <%= post.content.substring(0, 100) + " ..." %>
+          <a href="/posts/<%=post.title%>">Read More</a>
+          <a class="delete" href="/delete/<%=post.title%>">DELETE</a>
+          <%}else{%>
+            <%=post.content%>
+            <a class="delete" href="/delete/<%=post.title%>">DELETE</a>
+        <%}%>
+      <% } else { %>
+              Content not available
+        <% } %>
+    </p>
+
+
+    <% }) %>
+
+
+      <%- include("partials/footer"); -%>
